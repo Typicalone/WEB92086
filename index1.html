@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+ 
+<head>
+    <title>Routing in AngularJS</title>
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js">
+    </script>
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js">
+    </script>
+    <script>
+        var app = angular.module("myApp", ["ngRoute"]);
+        app.config(function ($routeProvider) {
+          $routeProvider
+            .when("/", {
+              templateUrl: "home.html",
+            })
+            .when("/tutorials", {
+              templateUrl: "tutorials.html",
+              controller: "tutorialsController",
+            })
+            .when("/courses", {
+              templateUrl: "courses.html",
+              controller: "coursesController",
+            })
+            .when("/projectideas", {
+              templateUrl: "projectideas.html",
+              controller: "projectideasController",
+            })
+            .otherwise({ redirectTo: "/" });
+        });
+        app.controller("tutorialsController", function ($scope) {
+          $scope.tutorials = [
+            "Practice DS and Algo.",
+            "Algorithms",
+            "Data Structure",
+            "Software Designs",
+            "CS Subjects",
+            "AI for Games",
+          ];
+        });
+        app.controller("coursesController", function ($scope) {
+          $scope.courses =
+          ["Live Courses",
+           "Self-Paced Courses",
+           "School Courses",
+           "Technical courses"];
+        });
+        app.controller("projectideasController", function ($scope) {
+          $scope.c = [
+            "Program for face detection",
+            "Program for coin detection",
+            "Program to blur an image",
+            "Program to create a single colored blank image",
+          ];
+          $scope.java = [
+            "A Group chat Application",
+            "Generating Password and OTP in Java",
+            "Creative Programming in Processing",
+          ];
+          $scope.python = [
+            "Make a Notpad using Tkinter",
+            "Color Game using Tkinter in Python",
+            "Message Encode-Decode using Tkinter",
+            "Twitter sentiment analysis using Python",
+          ];
+       
+          $scope.projectideas = [
+            { course: "C++", projects: $scope.c },
+            { course: "Java", projects: $scope.java },
+            { course: "Python", projects: $scope.python },
+          ];
+        });
+      </script>
+    <style>
+        a {
+            font-size: 25px;
+            color: black;
+            text-decoration: none;
+            padding-right: 20px;
+            padding-left: 20px;
+        }
+         
+        nav {
+            background-color: #d0dbd4;
+        }
+         
+        h1 {
+            color: #be1098;
+        }
+    </style>
+</head>
+ 
+<body>
+    <nav>
+        <a id="active1" href="#/">Home</a>
+        <a id="active2" href="#/tutorials">Tutorials</a>
+        <a id="active3" href="#/courses">Courses</a>
+        <a id="active4" href="#/projectideas">Project Ideas</a>
+    </nav>
+    <h1>LEARN WITH US</h1>
+    <div ng-view></div>
+    <script type="text/javascript"></script>
+</body>
+</html>
